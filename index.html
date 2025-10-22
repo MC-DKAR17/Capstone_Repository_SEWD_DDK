@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Website Template</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        .nav-link.active {
+            font-weight: 700;
+            color: #1f2937;
+            border-bottom: 2px solid #64888c;
+        }
+        .chat-container {
+            max-width: 600px;
+            height: 70vh;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .message-area {
+            flex-grow: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .message-bubble {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+        .user-message {
+            background-color: #4f46e5;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 0.25rem;
+        }
+        .ai-message {
+            background-color: #e5e7eb;
+            color: #374151;
+            align-self: flex-start;
+            border-bottom-left-radius: 0.25rem;
+        }
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            align-self: flex-start;
+            margin-bottom: 1rem;
+            background-color: #e5e7eb;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            border-bottom-left-radius: 0.25rem;
+        }
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #6b7280;
+            border-radius: 50%;
+            margin: 0 2px;
+            animation: bounce 0.8s infinite ease-in-out;
+        }
+        .dot:nth-child(2) { animation-delay: 0.1s; }
+        .dot:nth-child(3) { animation-delay: 0.2s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+        }
+        .input-area {
+            padding: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 0.75rem;
+        }
+        .input-area input {
+            flex-grow: 1;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            outline: none;
+        }
+        .input-area button {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .input-area button:hover {
+            background-color: #4338ca;
+        }
+        /* Modal Styles */
+        .star-rating .star {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md rounded-b-xl py-4 sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-gray-900 flex items-center">
+                <img src="temp_logo.png" alt="Temp Logo" class="h-6 w-6 rounded-full mr-2">
+                Temp
+            </a>
+            <div class="flex space-x-6 items-center">
+                <a href="#home" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Home</a>
+                <a href="#products" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Products</a>
+                <a href="#about" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">About</a>
+                <a href="#departments" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Departments</a>
+                <a href="#questions" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Questions</a>
+                
+                <!-- Shopping Cart Icon -->
+                <a href="#" class="text-gray-600 hover:text-gray-900 transition-colors duration-200 p-2 rounded-full hover:bg-gray-100 relative" onclick="showModal('cart-modal')">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <!-- Home Page -->
+        <section id="home" class="page active" style="min-height: calc(100vh - 120px);">
+            <div class="flex flex-col md:flex-row items-center justify-between py-16 px-8 bg-white rounded-2xl shadow-lg">
+                <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
+                    <h1 class="text-5xl font-extrabold text-gray-900 leading-tight">Climate Control. Made Wearable.</h1>
+                    <p class="mt-4 text-lg text-gray-600 max-w-lg">Discover Temp, the future of personal comfort with our line of automated heated and cooled jackets. Live boldly and feel perfectly comfortable no matter the weather.</p>
+                    <a href="#products" class="mt-8 inline-block bg-[#64888c] text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-[#69c4d9] transition-transform transform hover:scale-105 duration-300">Explore Apparel</a>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <!-- Placeholder image for the home page banner -->
+                    <img src="prototype_model.png" alt="Temp Jacket" class="w-80 h-80 rounded-full object-cover shadow-lg">
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Page -->
+        <section id="products" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-12">Our Products</h2>
+            <div class="flex flex-wrap justify-center gap-8">
+                <!-- Product Card 1: Jacket -->
+                <div id="product-jacket" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
+                    <!-- Placeholder image for Jacket -->
+                    <img src="jacket.png" alt="Heated & Cooled Jacket" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Jackets</h3>
+                    <p class="text-gray-600 mb-4 h-16">Our flagship jacket uses a single, intelligent system to both heat and cool, providing the ultimate comfort in any climate.</p>
+                    
+                    <br>
+                    
+                    <div id="jacket-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
+                        <!-- Rating will be dynamically injected here -->
+                        <span class="mr-2">4.5</span>
+                        <span class="text-yellow-500">★★★★★</span>
+                        <span class="text-gray-400 font-normal text-sm ml-2" id="jacket-review-count">(0 Reviews)</span>
+                    </div>
+
+                    <button onclick="showReviews('jacket', 'Heated & Cooled Jackets')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
+                        View All Reviews
+                    </button>
+                    <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
+                        Add to Cart - $unknown
+                    </button>
+                </div>
+                
+                <!-- Product Card 2: Vest -->
+                <div id="product-vest" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
+                    <!-- Placeholder image for Vest -->
+                    <img src="vest.png" alt="Heated & Cooled Vest" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Vests</h3>
+                    <p class="text-gray-600 mb-4 h-16">A lighter-weight variant of our jacket, offering the same automated climate control in a more streamlined form.</p>
+                    
+                    <br>
+                    
+                    <div id="vest-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
+                        <!-- Rating will be dynamically injected here -->
+                        <span class="mr-2">5.0</span>
+                        <span class="text-yellow-500">★★★★★</span>
+                        <span class="text-gray-400 font-normal text-sm ml-2" id="vest-review-count">(0 Reviews)</span>
+                    </div>
+
+                    <button onclick="showReviews('vest', 'Heated & Cooled Vests')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
+                        View All Reviews
+                    </button>
+                    <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
+                        Add to Cart - $unknown
+                    </button>
+                </div>
+		<!-- Product Card 3: Pants -->
+		<div id="product-vest" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
+                    <!-- Placeholder image for Pants -->
+                    <img src="" alt="Heated & Cooled Pants" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Pants</h3>
+                    <p class="text-gray-600 mb-4 h-16">Need some pants instead? Look no further to purchase some heated & cooled pants to wear for any type of condition!</p>
+                    
+                    <br>
+                    
+                    <div id="vest-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
+                        <!-- Rating will be dynamically injected here -->
+                        <span class="mr-2">5.0</span>
+                        <span class="text-yellow-500">★★★★★</span>
+                        <span class="text-gray-400 font-normal text-sm ml-2" id="vest-review-count">(0 Reviews)</span>
+                    </div>
+
+                    <button onclick="showReviews('vest', 'Heated & Cooled Vests')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
+                        View All Reviews
+                    </button>
+                    <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
+                        Add to Cart - $unknown
+                    </button>
+                </div>
+		<!-- Product Card 4: Hoodie -->
+		<div id="product-vest" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
+                    <!-- Placeholder image for Hoodie -->
+                    <img src="" alt="Heated & Cooled Hoodies" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
+                    <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Hoodies</h3>
+                    <p class="text-gray-600 mb-4 h-16">If you have a preference for hoodies instead, then no problem. We've got it for you.</p>
+                    
+                    <br>
+                    
+                    <div id="vest-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
+                        <!-- Rating will be dynamically injected here -->
+                        <span class="mr-2">5.0</span>
+                        <span class="text-yellow-500">★★★★★</span>
+                        <span class="text-gray-400 font-normal text-sm ml-2" id="vest-review-count">(0 Reviews)</span>
+                    </div>
+
+                    <button onclick="showReviews('vest', 'Heated & Cooled Vests')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
+                        View All Reviews
+                    </button>
+                    <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
+                        Add to Cart - $unknown
+                    </button>
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-12">About Temp</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Our Mission</h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    Here at Temp, our mission is to revolutionize personal comfort through intelligent apparel. We design automated heated and cooled jackets that adapt to your environment—empowering people to move freely, live boldly, and feel perfectly comfortable no matter the weather. By blending cutting-edge technology with sleek design, we aim to redefine what it means to dress for the elements—making climate control wearable, effortless, and sustainable.
+                </p>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Our Vision</h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    Temp is going to help people with all sorts of body temperatures and become the new popular clothing line.
+                </p>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Our Short-Term Goals</h3>
+                <ul class="list-disc list-inside text-lg text-gray-700 mb-4 pl-4 space-y-2">
+                    <li>Launch our flagship product line of heated and cooled jackets and vests.</li>
+                    <li>Build brand awareness through digital marketing.</li>
+                    <li>Establish a strong, loyal customer base.</li>
+                </ul>
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">Our Long-Term Goals</h3>
+                <ul class="list-disc list-inside text-lg text-gray-700 pl-4 space-y-2">
+                    <li>Expand our product range to include other forms of intelligent apparel.</li>
+                    <li>Become a globally recognized leader in wearable climate control technology.</li>
+                </ul>
+		
+		<br>
+
+		<h3 class="text-2xl font-bold text-gray-900 mb-2">Our Story</h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    Our inspiration to make this idea a reality is the tumultuous weather of where we reside, Medina, Ohio. We often experience very "unpredictable" weather, as we like to describe it. One moment, it may be extremely cold, and then later on the day... scorching hot! It's unbearable. We have had enough of this weather, so we thought... why not make a solution? That is when we decided on making Temp. Formerly, we were known as SMART Clothing, but we decided to turn the company name into a more concise one. With us now being Temp, we are looking to be visionaries, innovating products that give our modern society a new perspective on apparel.  
+                </p>
+            </div>
+        </section>
+
+        <!-- Departments Page -->
+        <section id="departments" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-12">Our Departments</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                <p class="text-lg text-gray-700">This section is currently under construction. Please check back later for more information about our company departments.</p>
+            </div>
+        </section>
+
+        <!-- Questions/Chatbot Page -->
+        <section id="questions" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">Got Questions? Ask our AI Assistant!</h2>
+            <div class="chat-container">
+                <div class="message-area" id="message-area">
+                    <!-- Initial AI message -->
+                    <div class="ai-message message-bubble">
+                        Hello! I'm your friendly AI assistant. I can answer questions about our brand, products, and policies. What can I help you with today?
+                    </div>
+                </div>
+
+                <div class="input-area">
+                    <input type="text" id="user-input" placeholder="Type your message..." />
+                    <button id="send-button">Send</button>
+                </div>
+            </div>
+	    <p class="text-center text-sm text-gray-500 mt-4">Note: The AI assistant's knowledge is based on the information provided in the "About" page.</p>
+        </section>
+
+    </main>
+
+    <!-- Review Modal Structure -->
+    <div id="review-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4" onclick="if(event.target.id === 'review-modal') hideModal('review-modal')">
+        <div class="bg-white w-full max-w-2xl rounded-xl shadow-2xl p-6 max-h-[90vh] flex flex-col" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-800" id="review-modal-title">Customer Reviews</h3>
+                <button onclick="hideModal('review-modal')" class="text-gray-500 hover:text-gray-700 transition-colors p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <div id="reviews-list" class="my-4 overflow-y-auto flex-grow space-y-4">
+                <!-- Reviews will be dynamically inserted here -->
+                <div class="text-center text-gray-500 py-8" id="no-reviews-message">Loading reviews...</div>
+            </div>
+
+            <div class="pt-4 border-t border-gray-200">
+                <h4 class="text-xl font-semibold mb-3">Submit Your Review</h4>
+                <div class="mb-3 flex space-x-1 star-rating" id="star-rating-input">
+                    <!-- Stars will be dynamically inserted for interaction -->
+                </div>
+                <textarea id="review-text-input" rows="3" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-[#64888c] focus:border-[#64888c] outline-none text-gray-700" placeholder="Share your experience..."></textarea>
+                <button onclick="submitReview()" class="mt-3 bg-[#64888c] text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-[#69c4d9] transition-colors duration-200">
+                    Submit Review
+                </button>
+                <p id="review-message" class="mt-2 text-sm text-red-500"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Modal Structure (Dummy) -->
+    <div id="cart-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4" onclick="if(event.target.id === 'cart-modal') hideModal('cart-modal')">
+        <div class="bg-white w-full max-w-md rounded-xl shadow-2xl p-6" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center pb-4 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-800">Shopping Cart</h3>
+                <button onclick="hideModal('cart-modal')" class="text-gray-500 hover:text-gray-700 transition-colors p-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+            <div class="py-6 text-center text-gray-600">
+                Your cart is currently empty. The full cart functionality will be added in a future update!
+            </div>
+            <button onclick="hideModal('cart-modal')" class="mt-4 bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 rounded-t-xl mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Temp. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Firebase Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, query, where, addDoc, onSnapshot, serverTimestamp, setLogLevel, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Global Variables
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth, userId = null;
+        let currentProductId = null;
+        let currentProductTitle = '';
+        let selectedRating = 0; // For new review submission
+
+        // Product Identifiers
+        const PRODUCT_JACKET = 'jacket';
+        const PRODUCT_VEST = 'vest';
+
+        // --- Firebase Initialization ---
+        async function initializeFirebase() {
+            if (!firebaseConfig) {
+                console.error("Firebase config is missing.");
+                return;
+            }
+
+            try {
+                // Initialize Firebase services
+                setLogLevel('Debug');
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+                
+                // Sign in logic
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+
+                // Wait for auth state to stabilize and set userId
+                await new Promise(resolve => onAuthStateChanged(auth, user => {
+                    if (user) {
+                        userId = user.uid;
+                    } else {
+                        // Fallback to anonymous ID if sign-in fails
+                        userId = 'guest-' + crypto.randomUUID();
+                    }
+                    console.log("Firebase initialized. User ID:", userId);
+                    resolve();
+                }));
+                
+                // Start listening for product reviews once auth is complete
+                setupReviewListeners();
+
+            } catch (error) {
+                console.error("Error during Firebase initialization:", error);
+            }
+        }
+
+        // --- Review Logic ---
+
+        function getReviewsCollectionRef() {
+            // Public collection path for shared product data/reviews
+            return collection(db, `artifacts/${appId}/public/data/product_reviews`);
+        }
+
+        function renderStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `<span class="text-xl ${i <= rating ? 'text-yellow-500' : 'text-gray-300'}">★</span>`;
+            }
+            return stars;
+        }
+
+        function calculateAverageRating(reviews) {
+            if (reviews.length === 0) return { avg: 0, count: 0 };
+            const total = reviews.reduce((sum, review) => sum + review.rating, 0);
+            return {
+                avg: (total / reviews.length).toFixed(1),
+                count: reviews.length
+            };
+        }
+
+        function updateProductRatingDisplay(productId, avg, count) {
+            const displayEl = document.getElementById(`${productId}-rating-display`);
+            const countEl = document.getElementById(`${productId}-review-count`);
+
+            if (displayEl && countEl) {
+                const ratingHtml = `
+                    <span class="mr-2">${avg}</span>
+                    <span class="text-yellow-500">${renderStars(Math.round(avg))}</span>
+                    <span class="text-gray-400 font-normal text-sm ml-2" id="${productId}-review-count">(${count} Review${count !== 1 ? 's' : ''})</span>
+                `;
+                displayEl.innerHTML = ratingHtml;
+                // Re-adding the element that was replaced:
+                displayEl.querySelector(`#${productId}-review-count`).textContent = `(${count} Review${count !== 1 ? 's' : ''})`;
+            }
+        }
+
+        function setupReviewListeners() {
+            if (!db) return;
+
+            const reviewsQuery = query(getReviewsCollectionRef());
+
+            onSnapshot(reviewsQuery, (snapshot) => {
+                const allReviews = snapshot.docs.map(doc => doc.data());
+
+                const jacketReviews = allReviews.filter(r => r.productId === PRODUCT_JACKET);
+                const vestReviews = allReviews.filter(r => r.productId === PRODUCT_VEST);
+
+                // Update Jacket
+                const { avg: jacketAvg, count: jacketCount } = calculateAverageRating(jacketReviews);
+                updateProductRatingDisplay(PRODUCT_JACKET, jacketAvg, jacketCount);
+
+                // Update Vest
+                const { avg: vestAvg, count: vestCount } = calculateAverageRating(vestReviews);
+                updateProductRatingDisplay(PRODUCT_VEST, vestAvg, vestCount);
+
+                // Re-render reviews in modal if it's currently open for this product
+                if (currentProductId) {
+                    displayReviews(currentProductId, currentProductTitle, allReviews);
+                }
+            }, (error) => {
+                console.error("Error listening to reviews:", error);
+            });
+        }
+
+        window.showReviews = function(productId, productTitle) {
+            currentProductId = productId;
+            currentProductTitle = productTitle;
+            document.getElementById('review-modal-title').textContent = `Reviews for ${productTitle}`;
+            
+            // Render the interactive stars for submission
+            const starInputEl = document.getElementById('star-rating-input');
+            starInputEl.innerHTML = '';
+            selectedRating = 0; // Reset rating
+            for (let i = 1; i <= 5; i++) {
+                const star = document.createElement('span');
+                star.classList.add('star', 'text-2xl', 'text-gray-300');
+                star.textContent = '★';
+                star.dataset.rating = i;
+                star.onclick = () => {
+                    selectedRating = i;
+                    // Visually update the selection
+                    for(let j = 1; j <= 5; j++) {
+                        starInputEl.children[j-1].classList.toggle('text-yellow-500', j <= selectedRating);
+                        starInputEl.children[j-1].classList.toggle('text-gray-300', j > selectedRating);
+                    }
+                };
+                starInputEl.appendChild(star);
+            }
+            
+            // Show the modal. Reviews will be loaded/updated by the onSnapshot listener.
+            showModal('review-modal');
+            
+            // Initial message before data comes in (will be replaced by onSnapshot)
+            document.getElementById('reviews-list').innerHTML = '<div class="text-center text-gray-500 py-8" id="no-reviews-message">Loading reviews...</div>';
+        }
+
+        function displayReviews(productId, productTitle, allReviews) {
+            const reviewsListEl = document.getElementById('reviews-list');
+            
+            // Only update if the modal is currently showing reviews for this product
+            if (currentProductId !== productId) return;
+
+            const filteredReviews = allReviews.filter(r => r.productId === productId).sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds);
+
+            reviewsListEl.innerHTML = '';
+
+            if (filteredReviews.length === 0) {
+                reviewsListEl.innerHTML = '<div class="text-center text-gray-500 py-8">Be the first to leave a review!</div>';
+                return;
+            }
+
+            filteredReviews.forEach(review => {
+                const date = review.timestamp?.toDate ? review.timestamp.toDate().toLocaleDateString() : 'N/A';
+                const reviewEl = document.createElement('div');
+                reviewEl.classList.add('p-4', 'bg-gray-50', 'rounded-lg', 'shadow-sm');
+                reviewEl.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <div class="font-bold text-gray-800">${renderStars(review.rating)}</div>
+                        <div class="text-xs text-gray-500">${date}</div>
+                    </div>
+                    <p class="text-gray-700">${review.reviewText}</p>
+                    <p class="text-xs text-gray-500 mt-2">By: User ID: ${review.authorId.substring(0, 10)}...</p>
+                `;
+                reviewsListEl.appendChild(reviewEl);
+            });
+        }
+
+        window.submitReview = async function() {
+            const reviewText = document.getElementById('review-text-input').value.trim();
+            const messageEl = document.getElementById('review-message');
+            messageEl.textContent = '';
+
+            if (!userId) {
+                messageEl.textContent = 'Error: Cannot submit review without a user ID.';
+                return;
+            }
+
+            if (selectedRating === 0) {
+                messageEl.textContent = 'Please select a star rating.';
+                return;
+            }
+
+            if (reviewText.length < 10) {
+                messageEl.textContent = 'Please write a more descriptive review (min 10 characters).';
+                return;
+            }
+
+            try {
+                // Check if the user already submitted a review. We'll allow multiple for simplicity here.
+                
+                await addDoc(getReviewsCollectionRef(), {
+                    productId: currentProductId,
+                    rating: selectedRating,
+                    reviewText: reviewText,
+                    authorId: userId,
+                    timestamp: serverTimestamp()
+                });
+
+                document.getElementById('review-text-input').value = '';
+                selectedRating = 0;
+                document.getElementById('star-rating-input').innerHTML = renderStars(0); // Reset stars
+                messageEl.textContent = 'Review submitted successfully! Thank you.';
+                messageEl.classList.remove('text-red-500');
+                messageEl.classList.add('text-green-600');
+
+            } catch (error) {
+                console.error("Error submitting review:", error);
+                messageEl.textContent = 'Failed to submit review. Please try again.';
+                messageEl.classList.remove('text-green-600');
+                messageEl.classList.add('text-red-500');
+            }
+        }
+
+        // --- Utility Functions ---
+
+        window.showModal = function(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+        }
+
+        window.hideModal = function(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+        
+        // --- Main App Setup ---
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeFirebase();
+
+            // --- Page Navigation Logic ---
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const pageMap = {
+                '#home': 'home',
+                '#products': 'products',
+                '#about': 'about',
+                '#departments': 'departments',
+                '#questions': 'questions'
+            };
+
+            function showPage(pageId) {
+                pages.forEach(page => page.classList.add('hidden'));
+                const currentPage = document.getElementById(pageId);
+                if (currentPage) {
+                    currentPage.classList.remove('hidden');
+                }
+                navLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${pageId}`) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+
+            function handleHashChange() {
+                const pageId = window.location.hash.substring(1) || 'home';
+                showPage(pageId);
+            }
+
+            window.addEventListener('hashchange', handleHashChange);
+            // Initial page load
+            handleHashChange();
+
+            // --- AI Chatbot Logic (Same as before) ---
+            const messageArea = document.getElementById('message-area');
+            const userInput = document.getElementById('user-input');
+            const sendButton = document.getElementById('send-button');
+
+            const chatHistory = [];
+            const systemPrompt = `You are a friendly and helpful AI assistant for Temp, a premium intelligent apparel brand. You should answer questions about our business, products, and policies.
+
+            **Business Details:**
+            * **Name:** Temp
+            * **Mission Statement:** To revolutionize personal comfort through intelligent apparel. We design automated heated and cooled jackets that adapt to your environment—empowering people to move freely, live boldly, and feel perfectly comfortable no matter the weather. By blending cutting-edge technology with sleek design, we aim to redefine what it means to dress for the elements—making climate control wearable, effortless, and sustainable.​
+            * **Vision Statement:** Temp is going to help people with all sorts of body temperatures and become the new popular clothing line.
+            
+            **Products:**
+            * **Heated & Cooled Jackets:** Our jackets use a single, intelligent system to both heat and cool, providing ultimate comfort in any climate. They currently cost $299.
+            * **Heated & Cooled Vests:** A lighter-weight variant of our jacket, offering the same automated climate control in a more streamlined form. They currently cost $199.
+            * **Automated Technology:** All of our jackets feature automated climate control, which senses your body temperature and environment to provide effortless comfort.
+
+            **Policies:**
+            * **Shipping:** We offer fast, reliable shipping to all major regions. Standard shipping takes 5-7 business days.
+            * **Returns:** We have a hassle-free 30-day return policy for all unworn and unwashed items. Customers can initiate a return through our website.
+
+            **Goals:**
+            * **Short-Term:** * Launch our flagship product line of heated and cooled jackets and vests.
+                * Build brand awareness through digital marketing.
+                * Establish a strong, loyal customer base.
+            * **Long-Term:** * Expand our product range to include other forms of intelligent apparel.
+                * Become a globally recognized leader in wearable climate control technology.
+
+            Maintain a conversational tone, use the user's name if they have provided it, and keep your responses concise.`;
+            
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+            function addMessage(text, sender) {
+                const messageBubble = document.createElement('div');
+                messageBubble.classList.add('message-bubble');
+                
+                if (sender === 'ai') {
+                    let formattedText = text;
+                    formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                    formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+                    messageBubble.innerHTML = formattedText;
+                } else {
+                    messageBubble.textContent = text;
+                }
+                
+                if (sender === 'user') {
+                    messageBubble.classList.add('user-message');
+                } else {
+                    messageBubble.classList.add('ai-message');
+                }
+                messageArea.appendChild(messageBubble);
+                messageArea.scrollTop = messageArea.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                const typingIndicator = document.createElement('div');
+                typingIndicator.classList.add('typing-indicator');
+                typingIndicator.innerHTML = `
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                `;
+                messageArea.appendChild(typingIndicator);
+                messageArea.scrollTop = messageArea.scrollHeight;
+            }
+
+            function hideTypingIndicator() {
+                const typingIndicator = messageArea.querySelector('.typing-indicator');
+                if (typingIndicator) {
+                    messageArea.removeChild(typingIndicator);
+                }
+            }
+
+            async function handleUserMessage() {
+                const userText = userInput.value.trim();
+                if (userText === '') return;
+
+                addMessage(userText, 'user');
+                chatHistory.push({ role: 'user', parts: [{ text: userText }] });
+                userInput.value = '';
+
+                showTypingIndicator();
+
+                try {
+                    const payload = {
+                        contents: chatHistory,
+                        systemInstruction: {
+                            parts: [{ text: systemPrompt }]
+                        },
+                    };
+
+                    // Exponential backoff retry logic (simplified)
+                    for (let i = 0; i < 3; i++) { 
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (response.status === 429 && i < 2) {
+                            // Retry after exponential delay
+                            await new Promise(resolve => setTimeout(resolve, Math.pow(2, i) * 1000));
+                            continue;
+                        }
+                        
+                        const result = await response.json();
+                        hideTypingIndicator();
+
+                        const aiResponseText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                        if (aiResponseText) {
+                            addMessage(aiResponseText, 'ai');
+                            chatHistory.push({ role: 'model', parts: [{ text: aiResponseText }] });
+                        } else {
+                            addMessage("Sorry, I'm having trouble with that right now. Could you try again?", 'ai');
+                        }
+                        return; // Exit function on success or non-retryable error
+                    }
+                    
+                    hideTypingIndicator();
+                    addMessage("The server is too busy right now. Please try again later.", 'ai');
+
+
+                } catch (error) {
+                    hideTypingIndicator();
+                    console.error("Error fetching AI response:", error);
+                    addMessage("Something went wrong. Please check the console for more details.", 'ai');
+                }
+            }
+
+            sendButton.addEventListener('click', handleUserMessage);
+            userInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
