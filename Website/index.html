@@ -161,9 +161,7 @@
         <section id="products" class="page hidden">
             <h2 class="text-4xl font-bold text-center mb-12">Our Products</h2>
             <div class="flex flex-wrap justify-center gap-8">
-                <!-- Product Card 1: Jacket -->
                 <div id="product-jacket" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                    <!-- Placeholder image for Jacket -->
                     <img src="jacket.png" alt="Heated & Cooled Jacket" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
                     <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Jackets</h3>
                     <p class="text-gray-600 mb-4 h-16">Our flagship jacket uses a single, intelligent system to both heat and cool, providing the ultimate comfort in any climate.</p>
@@ -171,8 +169,7 @@
                     <br>
                     
                     <div id="jacket-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
-                        <!-- Rating will be dynamically injected here -->
-                        <span class="mr-2">4.5</span>
+                        <span class="mr-2" id="jackets-rating-span">4.5</span>
                         <span class="text-yellow-500">★★★★★</span>
                         <span class="text-gray-400 font-normal text-sm ml-2" id="jacket-review-count">(0 Reviews)</span>
                     </div>
@@ -181,13 +178,11 @@
                         View All Reviews
                     </button>
                     <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
-                        Add to Cart - $unknown
+                        Explore More
                     </button>
                 </div>
                 
-                <!-- Product Card 2: Vest -->
                 <div id="product-vest" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                    <!-- Placeholder image for Vest -->
                     <img src="vest.png" alt="Heated & Cooled Vest" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
                     <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Vests</h3>
                     <p class="text-gray-600 mb-4 h-16">A lighter-weight variant of our jacket, offering the same automated climate control in a more streamlined form.</p>
@@ -195,8 +190,7 @@
                     <br>
                     
                     <div id="vest-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
-                        <!-- Rating will be dynamically injected here -->
-                        <span class="mr-2">5.0</span>
+                        <span class="mr-2" id="vests-rating-span">5.0</span>
                         <span class="text-yellow-500">★★★★★</span>
                         <span class="text-gray-400 font-normal text-sm ml-2" id="vest-review-count">(0 Reviews)</span>
                     </div>
@@ -205,59 +199,84 @@
                         View All Reviews
                     </button>
                     <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
-                        Add to Cart - $unknown
+                        Explore More
                     </button>
                 </div>
-		<!-- Product Card 3: Pants -->
-		<div id="product-vest" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                    <!-- Placeholder image for Pants -->
+		<div id="product-pants" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
                     <img src="" alt="Heated & Cooled Pants" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
                     <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Pants</h3>
                     <p class="text-gray-600 mb-4 h-16">Need some pants instead? Look no further to purchase some heated & cooled pants to wear for any type of condition!</p>
                     
                     <br>
                     
-                    <div id="vest-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
-                        <!-- Rating will be dynamically injected here -->
-                        <span class="mr-2">5.0</span>
+                    <div id="pants-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
+                        <span class="mr-2" id="pants-rating-span">5.0</span>
                         <span class="text-yellow-500">★★★★★</span>
-                        <span class="text-gray-400 font-normal text-sm ml-2" id="vest-review-count">(0 Reviews)</span>
+                        <span class="text-gray-400 font-normal text-sm ml-2" id="pants-review-count">(0 Reviews)</span>
                     </div>
 
-                    <button onclick="showReviews('vest', 'Heated & Cooled Vests')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
+                    <button onclick="showReviews('pants', 'Heated & Cooled Pants')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
                         View All Reviews
                     </button>
                     <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
-                        Add to Cart - $unknown
+                        Explore More
                     </button>
                 </div>
-		<!-- Product Card 4: Hoodie -->
-		<div id="product-vest" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                    <!-- Placeholder image for Hoodie -->
+		<div id="product-hoodie" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
                     <img src="" alt="Heated & Cooled Hoodies" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
                     <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Hoodies</h3>
                     <p class="text-gray-600 mb-4 h-16">If you have a preference for hoodies instead, then no problem. We've got it for you.</p>
                     
                     <br>
                     
-                    <div id="vest-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
-                        <!-- Rating will be dynamically injected here -->
-                        <span class="mr-2">5.0</span>
+                    <div id="hoodie-rating-display" class="flex items-center text-xl font-bold text-[#64888c] mb-4">
+                        <span class="mr-2" id="hoodies-rating-span">5.0</span>
                         <span class="text-yellow-500">★★★★★</span>
-                        <span class="text-gray-400 font-normal text-sm ml-2" id="vest-review-count">(0 Reviews)</span>
+                        <span class="text-gray-400 font-normal text-sm ml-2" id="hoodie-review-count">(0 Reviews)</span>
                     </div>
 
-                    <button onclick="showReviews('vest', 'Heated & Cooled Vests')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
+                    <button onclick="showReviews('hoodie', 'Heated & Cooled Hoodies')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
                         View All Reviews
                     </button>
                     <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
-                        Add to Cart - $unknown
+                        Explore More
                     </button>
                 </div>
-
-
             </div>
         </section>
+        
+        <!--Products Pages -->
+        <section id="jackets-page" class="page hidden">
+    <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Jackets</h2>
+    <div class="bg-white rounded-xl shadow-lg p-8">
+        <p class="text-lg text-gray-700">This page will showcase the 10 different types of jackets you mentioned (e.g., Lite, Pro, Stealth, etc.).</p>
+        <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+        </div>
+</section>
+
+<section id="vests-page" class="page hidden">
+    <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Vests</h2>
+    <div class="bg-white rounded-xl shadow-lg p-8">
+        <p class="text-lg text-gray-700">This page will showcase the various vests available.</p>
+        <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+    </div>
+</section>
+
+<section id="pants-page" class="page hidden">
+    <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Pants</h2>
+    <div class="bg-white rounded-xl shadow-lg p-8">
+        <p class="text-lg text-gray-700">This page will showcase the various pants available.</p>
+        <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+    </div>
+</section>
+
+<section id="hoodies-page" class="page hidden">
+    <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Hoodies</h2>
+    <div class="bg-white rounded-xl shadow-lg p-8">
+        <p class="text-lg text-gray-700">This page will showcase the various hoodies available.</p>
+        <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+    </div>
+</section>
 
         <!-- About Page -->
         <section id="about" class="page hidden">
@@ -337,15 +356,16 @@
             </div>
 
             <div class="pt-4 border-t border-gray-200">
-                <h4 class="text-xl font-semibold mb-3">Submit Your Review</h4>
-                <div class="mb-3 flex space-x-1 star-rating" id="star-rating-input">
-                    <!-- Stars will be dynamically inserted for interaction -->
+                <h4 class="text-xl font-semibold mb-3 text-gray-800">Want to leave a review?</h4>
+                <div class="bg-blue-50 p-4 rounded-lg text-center">
+                    <a id="google-form-link" 
+                       href="#" 
+                       target="_blank" 
+                       class="text-lg font-bold text-[#4f46e5] hover:text-[#4338ca] hover:underline transition-colors duration-200">
+                        Leave a review on this Google Form!
+                    </a>
+                    <p class="text-sm text-gray-600 mt-1">This will open the product-specific form in a new tab.</p>
                 </div>
-                <textarea id="review-text-input" rows="3" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-[#64888c] focus:border-[#64888c] outline-none text-gray-700" placeholder="Share your experience..."></textarea>
-                <button onclick="submitReview()" class="mt-3 bg-[#64888c] text-white font-semibold py-2 px-4 rounded-full shadow-md hover:bg-[#69c4d9] transition-colors duration-200">
-                    Submit Review
-                </button>
-                <p id="review-message" class="mt-2 text-sm text-red-500"></p>
             </div>
         </div>
     </div>
@@ -394,6 +414,14 @@
         // Product Identifiers
         const PRODUCT_JACKET = 'jacket';
         const PRODUCT_VEST = 'vest';
+        
+        // --- Google Form URLs (Customize these with your actual links!) ---
+        const GOOGLE_FORM_URLS = {
+            'jacket': 'https://docs.google.com/forms/d/e/1FAIpQLSdp9K5z3Io9sFrngdZHbZ9JmI0eb3GBxOI8Ex4LUatv5zrqhw/viewform?usp=header',
+            'vest': 'https://docs.google.com/forms/d/e/1FAIpQLSdDeXkC73ch8fl6eDTEDVI93vtRbCDo9YaP4u7voOwmB1UfgA/viewform?usp=header',
+            'pants': 'https://docs.google.com/forms/d/e/1FAIpQLSdaX2VX46Eb14WE7PP5YpPsCxWWUupeaTIwP0CV-QoKs-kasw/viewform?usp=header',
+            'hoodie': 'https://docs.google.com/forms/d/e/1FAIpQLSfLKEBgFZnWvFVrJI4HsK9SH78IkjemO1RJvwqNoyldOb0OFA/viewform?usp=header'
+        };
 
         // --- Firebase Initialization ---
         async function initializeFirebase() {
@@ -507,29 +535,23 @@
         window.showReviews = function(productId, productTitle) {
             currentProductId = productId;
             currentProductTitle = productTitle;
+            
+            // 1. Set the Modal Title
             document.getElementById('review-modal-title').textContent = `Reviews for ${productTitle}`;
             
-            // Render the interactive stars for submission
-            const starInputEl = document.getElementById('star-rating-input');
-            starInputEl.innerHTML = '';
-            selectedRating = 0; // Reset rating
-            for (let i = 1; i <= 5; i++) {
-                const star = document.createElement('span');
-                star.classList.add('star', 'text-2xl', 'text-gray-300');
-                star.textContent = '★';
-                star.dataset.rating = i;
-                star.onclick = () => {
-                    selectedRating = i;
-                    // Visually update the selection
-                    for(let j = 1; j <= 5; j++) {
-                        starInputEl.children[j-1].classList.toggle('text-yellow-500', j <= selectedRating);
-                        starInputEl.children[j-1].classList.toggle('text-gray-300', j > selectedRating);
-                    }
-                };
-                starInputEl.appendChild(star);
+            // 2. Set the Product-Specific Google Form Link
+            const formLinkEl = document.getElementById('google-form-link');
+            const formUrl = GOOGLE_FORM_URLS[productId];
+
+            if (formLinkEl && formUrl) {
+                formLinkEl.href = formUrl;
+            } else if (formLinkEl) {
+                formLinkEl.href = '#';
+                formLinkEl.textContent = 'Form link missing for this product!';
+                console.error(`Google Form URL not found for product ID: ${productId}`);
             }
-            
-            // Show the modal. Reviews will be loaded/updated by the onSnapshot listener.
+
+            // 3. Show the modal. Reviews will be loaded/updated by the onSnapshot listener.
             showModal('review-modal');
             
             // Initial message before data comes in (will be replaced by onSnapshot)
@@ -635,7 +657,12 @@
                 '#products': 'products',
                 '#about': 'about',
                 '#departments': 'departments',
-                '#questions': 'questions'
+                '#questions': 'questions',
+                // --- New Product Pages ---
+                '#jackets-page': 'jackets-page',
+                '#vests-page': 'vests-page',
+                '#pants-page': 'pants-page',
+                '#hoodies-page': 'hoodies-page'
             };
 
             function showPage(pageId) {
