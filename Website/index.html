@@ -19,6 +19,34 @@
             color: #1f2937;
             border-bottom: 2px solid #64888c;
         }
+        /* START DROPDOWN FIX */
+        /* Custom styles for the dropdown menu */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0; /* Align right with the parent link */
+            top: 100%;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            min-width: 150px;
+            z-index: 60;
+            /* Removed margin-top: 0.5rem; to eliminate the gap causing the flicker */
+        }
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: #374151;
+            white-space: nowrap;
+        }
+        .dropdown-item:hover {
+            background-color: #f3f4f6;
+            color: #4f46e5;
+        }
+        /* END DROPDOWN FIX */
         .chat-container {
             max-width: 600px;
             height: 70vh;
@@ -114,7 +142,6 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
     <nav class="bg-white shadow-md rounded-b-xl py-4 sticky top-0 z-50">
         <div class="container mx-auto px-4 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-gray-900 flex items-center">
@@ -125,10 +152,22 @@
                 <a href="#home" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Home</a>
                 <a href="#products" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Products</a>
                 <a href="#about" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">About</a>
-                <a href="#departments" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Departments</a>
+                
+                <div class="relative dropdown">
+                    <a href="#departments" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer">
+                        Departments
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#operations" class="dropdown-item nav-link">Operations Department</a>
+                        <a href="#finance" class="dropdown-item nav-link">Finance Department</a>
+                        <a href="#technology" class="dropdown-item nav-link">Information & Data Technology Department</a>
+                        <a href="#marketing" class="dropdown-item nav-link">Sales Development & Marketing Research Department</a>
+                        <a href="#security" class="dropdown-item nav-link">Human Resources & Security Department</a>
+                        <a href="#legal" class="dropdown-item nav-link">Legal & Compliance Department</a>
+                    </div>
+                </div>
                 <a href="#questions" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Questions</a>
                 
-                <!-- Shopping Cart Icon -->
                 <a href="#" class="text-gray-600 hover:text-gray-900 transition-colors duration-200 p-2 rounded-full hover:bg-gray-100 relative" onclick="showModal('cart-modal')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
                         <circle cx="9" cy="21" r="1"></circle>
@@ -142,7 +181,6 @@
 
     <main class="container mx-auto px-4 py-8">
 
-        <!-- Home Page -->
         <section id="home" class="page active" style="min-height: calc(100vh - 120px);">
             <div class="flex flex-col md:flex-row items-center justify-between py-16 px-8 bg-white rounded-2xl shadow-lg">
                 <div class="md:w-1/2 text-center md:text-left mb-8 md:mb-0">
@@ -151,13 +189,11 @@
                     <a href="#products" class="mt-8 inline-block bg-[#64888c] text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-[#69c4d9] transition-transform transform hover:scale-105 duration-300">Explore Apparel</a>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <!-- Placeholder image for the home page banner -->
                     <img src="prototype_model.png" alt="Temp Jacket" class="w-80 h-80 rounded-full object-cover shadow-lg">
                 </div>
             </div>
         </section>
 
-        <!-- Products Page -->
         <section id="products" class="page hidden">
             <h2 class="text-4xl font-bold text-center mb-12">Our Products</h2>
             <div class="flex flex-wrap justify-center gap-8">
@@ -245,7 +281,6 @@
             </div>
         </section>
         
-        <!--Products Pages -->
         <section id="jackets-page" class="page hidden">
     <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Jackets</h2>
     <div class="bg-white rounded-xl shadow-lg p-8">
@@ -278,7 +313,6 @@
     </div>
 </section>
 
-        <!-- About Page -->
         <section id="about" class="page hidden">
             <h2 class="text-4xl font-bold text-center mb-12">About Temp</h2>
             <div class="bg-white rounded-xl shadow-lg p-8">
@@ -311,20 +345,89 @@
             </div>
         </section>
 
-        <!-- Departments Page -->
         <section id="departments" class="page hidden">
             <h2 class="text-4xl font-bold text-center mb-12">Our Departments</h2>
             <div class="bg-white rounded-xl shadow-lg p-8 text-center">
-                <p class="text-lg text-gray-700">This section is currently under construction. Please check back later for more information about our company departments.</p>
+                <p class="text-lg text-gray-700">
+                    Select a department from the dropdown menu in the navigation bar to learn more!
+                    <br>
+                    <a href="#engineering" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">Engineering</a> | 
+                    <a href="#marketing" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">Marketing</a> | 
+                    <a href="#support" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">Support</a>
+                </p>
+            </div>
+        </section>
+        
+        <section id="operations" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">Operations Department ⚙️</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Innovation and Design</h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    Our Engineering team is at the heart of our technology. They design the miniaturized climate control systems, develop the intelligent fabric integration, and continually iterate on prototypes to ensure maximum comfort and efficiency. They turn concept into reality!
+                </p>
+                <a href="#departments" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to Departments</a>
             </div>
         </section>
 
-        <!-- Questions/Chatbot Page -->
+        <section id="marketing" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">Sales Development & Marketing Research Department 📈</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Brand Strategy and Outreach</h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    The Marketing team is responsible for building the Temp brand and spreading the word about our revolutionary apparel. They manage digital campaigns, social media, content creation, and strategic partnerships to connect with customers globally.
+                </p>
+                <a href="#departments" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to Departments</a>
+            </div>
+        </section>
+
+        <section id="technology" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">Information & Data Technology Department 🧑‍💻</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Helping You Stay Comfortable</h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    Our dedicated Customer Support team ensures every Temp user has a seamless experience. They handle inquiries about orders, returns, technical issues with the apparel's climate control, and general product questions. Your comfort is their priority.
+                </p>
+                <a href="#departments" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to Departments</a>
+            </div>
+        </section>
+
+        <section id="finance" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">Finance Department 💸</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Helping You Stay Comfortable</h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    Our dedicated Customer Support team ensures every Temp user has a seamless experience. They handle inquiries about orders, returns, technical issues with the apparel's climate control, and general product questions. Your comfort is their priority.
+                </p>
+                <a href="#departments" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to Departments</a>
+            </div>
+        </section>
+
+        <section id="security" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">Human Resources & Security Department 🛡️</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Helping You Stay Comfortable</h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    Our dedicated Customer Support team ensures every Temp user has a seamless experience. They handle inquiries about orders, returns, technical issues with the apparel's climate control, and general product questions. Your comfort is their priority.
+                </p>
+                <a href="#departments" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to Departments</a>
+            </div>
+        </section>
+
+        <section id="legal" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">Legal & Compliance Department 📃</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Helping You Stay Comfortable</h3>
+                <p class="text-lg text-gray-700 mb-4">
+                    Our dedicated Customer Support team ensures every Temp user has a seamless experience. They handle inquiries about orders, returns, technical issues with the apparel's climate control, and general product questions. Your comfort is their priority.
+                </p>
+                <a href="#departments" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to Departments</a>
+            </div>
+        </section>
+
         <section id="questions" class="page hidden">
             <h2 class="text-4xl font-bold text-center mb-8">Got Questions? Ask our AI Assistant!</h2>
             <div class="chat-container">
                 <div class="message-area" id="message-area">
-                    <!-- Initial AI message -->
                     <div class="ai-message message-bubble">
                         Hello! I'm your friendly AI assistant. I can answer questions about our brand, products, and policies. What can I help you with today?
                     </div>
@@ -340,7 +443,6 @@
 
     </main>
 
-    <!-- Review Modal Structure -->
     <div id="review-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4" onclick="if(event.target.id === 'review-modal') hideModal('review-modal')">
         <div class="bg-white w-full max-w-2xl rounded-xl shadow-2xl p-6 max-h-[90vh] flex flex-col" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center pb-4 border-b border-gray-200">
@@ -351,7 +453,6 @@
             </div>
 
             <div id="reviews-list" class="my-4 overflow-y-auto flex-grow space-y-4">
-                <!-- Reviews will be dynamically inserted here -->
                 <div class="text-center text-gray-500 py-8" id="no-reviews-message">Loading reviews...</div>
             </div>
 
@@ -370,7 +471,6 @@
         </div>
     </div>
 
-    <!-- Cart Modal Structure (Dummy) -->
     <div id="cart-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 p-4" onclick="if(event.target.id === 'cart-modal') hideModal('cart-modal')">
         <div class="bg-white w-full max-w-md rounded-xl shadow-2xl p-6" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center pb-4 border-b border-gray-200">
@@ -388,7 +488,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8 rounded-t-xl mt-8">
         <div class="container mx-auto px-4 text-center">
             <p>&copy; 2025 Temp. All rights reserved.</p>
@@ -396,7 +495,7 @@
     </footer>
 
     <script type="module">
-        // Firebase Imports
+        // Firebase Imports (Omitted for brevity, no changes)
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, query, where, addDoc, onSnapshot, serverTimestamp, setLogLevel, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
@@ -423,7 +522,7 @@
             'hoodie': 'https://docs.google.com/forms/d/e/1FAIpQLSfLKEBgFZnWvFVrJI4HsK9SH78IkjemO1RJvwqNoyldOb0OFA/viewform?usp=header'
         };
 
-        // --- Firebase Initialization ---
+        // --- Firebase Initialization (Omitted for brevity, no changes) ---
         async function initializeFirebase() {
             if (!firebaseConfig) {
                 console.error("Firebase config is missing.");
@@ -464,8 +563,7 @@
             }
         }
 
-        // --- Review Logic ---
-
+        // --- Review Logic (Omitted for brevity, no changes) ---
         function getReviewsCollectionRef() {
             // Public collection path for shared product data/reviews
             return collection(db, `artifacts/${appId}/public/data/product_reviews`);
@@ -635,7 +733,7 @@
             }
         }
 
-        // --- Utility Functions ---
+        // --- Utility Functions (Omitted for brevity, no changes) ---
 
         window.showModal = function(modalId) {
             document.getElementById(modalId).classList.remove('hidden');
@@ -652,17 +750,21 @@
             // --- Page Navigation Logic ---
             const navLinks = document.querySelectorAll('.nav-link');
             const pages = document.querySelectorAll('.page');
+            
+            // Added new department pages to map
             const pageMap = {
                 '#home': 'home',
                 '#products': 'products',
                 '#about': 'about',
                 '#departments': 'departments',
                 '#questions': 'questions',
-                // --- New Product Pages ---
                 '#jackets-page': 'jackets-page',
                 '#vests-page': 'vests-page',
                 '#pants-page': 'pants-page',
-                '#hoodies-page': 'hoodies-page'
+                '#hoodies-page': 'hoodies-page',
+                '#engineering': 'engineering',
+                '#marketing': 'marketing',
+                '#support': 'support'
             };
 
             function showPage(pageId) {
@@ -671,10 +773,31 @@
                 if (currentPage) {
                     currentPage.classList.remove('hidden');
                 }
+                
+                // Active link logic
                 navLinks.forEach(link => {
-                    if (link.getAttribute('href') === `#${pageId}`) {
+                    const href = link.getAttribute('href');
+                    const linkPageId = href ? href.substring(1) : '';
+
+                    // The main navigation link for 'Departments' should be active if we are on any department page
+                    const mainDepartmentLink = document.querySelector('.dropdown > a[href="#departments"]');
+                    const isDepartmentPage = ['departments', 'engineering', 'marketing', 'support'].includes(pageId);
+
+                    if (mainDepartmentLink) {
+                        if (isDepartmentPage && link === mainDepartmentLink) {
+                             mainDepartmentLink.classList.add('active');
+                        } else if (!isDepartmentPage && link === mainDepartmentLink) {
+                            mainDepartmentLink.classList.remove('active');
+                        }
+                    }
+
+                    // Individual page link logic for all links
+                    if (linkPageId === pageId) {
                         link.classList.add('active');
-                    } else {
+                    } else if (linkPageId !== 'departments' && isDepartmentPage) {
+                        // Keep only the currently active department sub-link highlighted, remove others
+                        link.classList.remove('active');
+                    } else if (!isDepartmentPage && linkPageId !== 'departments') {
                         link.classList.remove('active');
                     }
                 });
@@ -689,7 +812,7 @@
             // Initial page load
             handleHashChange();
 
-            // --- AI Chatbot Logic (Same as before) ---
+            // --- AI Chatbot Logic (Omitted for brevity, no changes) ---
             const messageArea = document.getElementById('message-area');
             const userInput = document.getElementById('user-input');
             const sendButton = document.getElementById('send-button');
