@@ -198,7 +198,7 @@
             <h2 class="text-4xl font-bold text-center mb-12">Our Products</h2>
             <div class="flex flex-wrap justify-center gap-8">
                 <div id="product-jacket" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                    <img src="jacket.png" alt="Heated & Cooled Jacket" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
+                    <img src="temp_logo.png" alt="Temporary logo in place of product image" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
                     <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Jackets</h3>
                     <p class="text-gray-600 mb-4 h-16">Our flagship jacket uses a single, intelligent system to both heat and cool, providing the ultimate comfort in any climate.</p>
                     
@@ -219,7 +219,7 @@
                 </div>
                 
                 <div id="product-vest" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                    <img src="vest.png" alt="Heated & Cooled Vest" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
+                    <img src="temp_logo.png" alt="Temporary logo in place of product image" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
                     <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Vests</h3>
                     <p class="text-gray-600 mb-4 h-16">A lighter-weight variant of our jacket, offering the same automated climate control in a more streamlined form.</p>
                     
@@ -239,7 +239,7 @@
                     </button>
                 </div>
 		<div id="product-pants" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                    <img src="" alt="Heated & Cooled Pants" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
+                    <img src="temp_logo.png" alt="Temporary logo in place of product image" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
                     <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Pants</h3>
                     <p class="text-gray-600 mb-4 h-16">Need some pants instead? Look no further to purchase some heated & cooled pants to wear for any type of condition!</p>
                     
@@ -259,7 +259,7 @@
                     </button>
                 </div>
 		<div id="product-hoodie" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
-                    <img src="" alt="Heated & Cooled Hoodies" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
+                    <img src="temp_logo.png" alt="Temporary logo in place of product image" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
                     <h3 class="text-2xl font-bold text-gray-900 mt-4 mb-2">Heated & Cooled Hoodies</h3>
                     <p class="text-gray-600 mb-4 h-16">If you have a preference for hoodies instead, then no problem. We've got it for you.</p>
                     
@@ -905,8 +905,8 @@
 
             Maintain a conversational tone, use the user's name if they have provided it, and keep your responses concise.`;
             
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const apiKey = "AIzaSyDwWABT-Rfa29Dgif2HZpOTpunGzYMRQ4o";
+            const apiUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}";
 
             function addMessage(text, sender) {
                 const messageBubble = document.createElement('div');
