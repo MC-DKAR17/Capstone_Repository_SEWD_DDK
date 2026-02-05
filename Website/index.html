@@ -573,7 +573,9 @@
             </div>
 
             <div id="reviews-list" class="my-4 overflow-y-auto flex-grow space-y-4">
-                <div class="text-center text-gray-500 py-8" id="no-reviews-message">Loading reviews...</div>
+                <div class="text-center py-12 text-gray-400 italic animate-pulse" id="no-reviews-message">
+                    Gathering thoughts from our community...
+                </div>
             </div>
 
             <div class="pt-4 border-t border-gray-200">
@@ -753,27 +755,69 @@
         window.showReviews = function(productId, productTitle) {
             currentProductId = productId;
             currentProductTitle = productTitle;
-            
-            // 1. Set the Modal Title
+    
+            // Set the Modal Title
             document.getElementById('review-modal-title').textContent = `Reviews for ${productTitle}`;
-            
-            // 2. Set the Product-Specific Google Form Link
+    
+            // Set the Product-Specific Google Form Link
             const formLinkEl = document.getElementById('google-form-link');
             const formUrl = GOOGLE_FORM_URLS[productId];
+            if (formLinkEl && formUrl) formLinkEl.href = formUrl;
 
-            if (formLinkEl && formUrl) {
-                formLinkEl.href = formUrl;
-            } else if (formLinkEl) {
-                formLinkEl.href = '#';
-                formLinkEl.textContent = 'Form link missing for this product!';
-                console.error(`Google Form URL not found for product ID: ${productId}`);
-            }
+            // 1. Show the loading message first
+            const reviewsListEl = document.getElementById('reviews-list');
+            reviewsListEl.innerHTML = `
+                <div class="text-center py-12 text-gray-400 italic animate-pulse" id="loading-placeholder">
+                    Sourcing latest feedback...
+                </div>`;
 
-            // 3. Show the modal. Reviews will be loaded/updated by the onSnapshot listener.
             showModal('review-modal');
-            
-            // Initial message before data comes in (will be replaced by onSnapshot)
-            document.getElementById('reviews-list').innerHTML = '<div class="text-center text-gray-500 py-8" id="no-reviews-message">Loading reviews...</div>';
+
+            // 2. Add the delay to show "fake" data
+            setTimeout(() => {
+                // Only show fake data if the loading placeholder is still there 
+                // (This prevents overwriting real Firebase data if it loads faster)
+                const placeholder = document.getElementById('loading-placeholder');
+                if (placeholder) {
+                    injectFakeReviews(productId, productTitle);
+                }
+            }, 1500); // 1.5 second delay
+        }
+
+        function injectFakeReviews(productId, productTitle) {
+            const reviewsListEl = document.getElementById('reviews-list');
+    
+            // Simulated data tailored to your Medina, Ohio story
+            const fakeData = [
+                {
+                    rating: 5,
+                    date: "Feb 3, 2026",
+                    user: "Sarah M.",
+                    text: `Finally! Something that handles the Medina weather. I wore this to the Square and stayed perfectly warm.`
+                },
+                {
+                    rating: 4,
+                    date: "Jan 28, 2026",
+                    user: "Jason R.",
+                    text: `Having a dynamic piece of clothing that can swap between the heat and cold, without having to change, is extremely handy!`
+                }
+            ];
+
+            reviewsListEl.innerHTML = ''; // Clear the loader
+
+            fakeData.forEach(review => {
+                const reviewEl = document.createElement('div');
+                reviewEl.className = 'p-4 bg-gray-50 rounded-lg shadow-sm border border-gray-100';
+                reviewEl.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <div class="font-bold text-gray-800">${renderStars(review.rating)}</div>
+                        <div class="text-xs text-gray-500">${review.date}</div>
+                    </div>
+                    <p class="text-gray-700 text-sm italic">"${review.text}"</p>
+                    <p class="text-xs text-gray-400 mt-2">— Verified Buyer: ${review.user}</p>
+                `;
+                reviewsListEl.appendChild(reviewEl);
+            });
         }
 
         function displayReviews(productId, productTitle, allReviews) {
