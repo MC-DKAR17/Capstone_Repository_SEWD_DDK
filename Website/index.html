@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f3f4f6;
@@ -138,7 +142,7 @@
             <div class="flex space-x-6 items-center">
                 <a href="#home" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Home</a>
                 <a href="#products" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">Products</a>
-                <a href="#about" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200">About</a>
+                
                 
                 <div class="relative dropdown">
                     <a href="#departments" class="nav-link text-gray-600 hover:text-gray-900 transition-colors duration-200 cursor-pointer">
@@ -168,12 +172,11 @@
 
     <main class="container mx-auto px-4 py-8">
 
-        <section id="home" class="page active relative overflow-hidden" style="min-height: calc(100vh - 120px);">
+        <section id="home" class="page active relative overflow-hidden">
             <div class="absolute top-0 -left-20 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
             <div class="absolute bottom-0 -right-20 w-96 h-96 bg-orange-100 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
         
             <div class="relative flex flex-col md:flex-row items-center justify-between py-16 px-8 bg-white/60 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/20">
-                
                 <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0 z-10">
                     <span class="inline-block px-4 py-1 mb-6 text-sm font-bold tracking-widest text-blue-600 uppercase bg-blue-50 rounded-full">
                         Next-Gen Apparel
@@ -185,38 +188,68 @@
                         </span>
                     </h1>
                     <p class="mt-6 text-lg text-gray-600 max-w-lg leading-relaxed">
-                        Discover <strong>Temp</strong>, the future of personal comfort. Our intelligent jackets automatically sense your environment to keep you perfectly cozy—no matter what Ohio throws at you.
+                        Discover <strong>Temp</strong>, the future of personal comfort. Our intelligent jackets automatically sense your environment to keep you perfectly cozy.
                     </p>
                     
                     <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                         <a href="#products" class="inline-block bg-[#4f46e5] text-white font-bold py-4 px-8 rounded-full shadow-xl hover:bg-[#4338ca] hover:shadow-2xl transition-all transform hover:-translate-y-1 duration-300">
                             Explore Apparel
                         </a>
-                        <a href="#about" class="inline-block bg-white text-gray-700 font-semibold py-4 px-8 rounded-full shadow-md border border-gray-100 hover:bg-gray-50 transition-all duration-300">
+                        <a href="#our-story-anchor" class="inline-block bg-white text-gray-700 font-semibold py-4 px-8 rounded-full shadow-md border border-gray-100 hover:bg-gray-50 transition-all duration-300">
                             Our Story
                         </a>
-                    </div>
-        
-                    <div class="mt-8 pt-8 border-t border-gray-100 flex items-center justify-center md:justify-start gap-4">
-                        <div class="flex -space-x-2">
-                            <div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-white"></div>
-                            <div class="w-8 h-8 rounded-full bg-gray-400 border-2 border-white"></div>
-                            <div class="w-8 h-8 rounded-full bg-gray-500 border-2 border-white"></div>
-                        </div>
-                        <p class="text-sm text-gray-500 font-medium">Joined by 500+ Early Adopters</p>
                     </div>
                 </div>
         
                 <div class="md:w-1/2 flex justify-center relative">
                     <div class="absolute inset-0 bg-gradient-to-tr from-blue-400 to-orange-300 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-                    
                     <div class="relative group">
                         <img src="prototype_model.png" alt="Temp Jacket" 
                              class="w-80 h-80 md:w-96 md:h-96 rounded-2xl object-cover shadow-2xl transition-transform duration-500 group-hover:scale-105">
-                        
-                        <div class="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-lg border border-gray-50 animate-bounce transition-all">
+                        <div class="absolute -bottom-4 -left-4 bg-white p-4 rounded-xl shadow-lg border border-gray-50 animate-bounce">
                             <p class="text-xs text-gray-500 uppercase font-bold tracking-tighter">Current Temp</p>
                             <p class="text-xl font-black text-[#4f46e5]">72°F</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="relative mt-20 mb-20">
+                <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Engineered for Every Condition</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center border-2 border-dashed border-gray-300">
+                        <span class="text-gray-400 font-medium">[Jacket Placeholder]</span>
+                    </div>
+                    <div class="aspect-square bg-gray-300 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center border-2 border-dashed border-gray-400">
+                        <span class="text-gray-500 font-medium">[Vest Placeholder]</span>
+                    </div>
+                    <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center border-2 border-dashed border-gray-300">
+                        <span class="text-gray-400 font-medium">[Pants Placeholder]</span>
+                    </div>
+                    <div class="aspect-square bg-gray-300 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center border-2 border-dashed border-gray-400">
+                        <span class="text-gray-500 font-medium">[Hoodie Placeholder]</span>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="our-story-anchor" class="relative bg-white rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100 mt-12 mb-16 scroll-mt-24">
+                <div class="max-w-3xl mx-auto">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6 text-center">Our Story</h2>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed italic text-center">
+                        "Our inspiration to make this idea a reality is the tumultuous weather of where we reside, Columbus, Ohio..."
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        We often experience very "unpredictable" weather. One moment, it may be extremely cold, and then later in the day... scorching hot! We decided to build <strong>Temp</strong> to give our modern society a new perspective on apparel—making climate control wearable, effortless, and sustainable.
+                    </p>
+        
+                    <div class="grid md:grid-cols-2 gap-8 mt-12 border-t border-gray-100 pt-12">
+                        <div>
+                            <h3 class="text-2xl font-bold text-[#4f46e5] mb-4">Our Mission</h3>
+                            <p class="text-gray-600">Empowering people to move freely, live boldly, and feel perfectly comfortable no matter the weather by blending technology with sleek design.</p>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-[#4f46e5] mb-4">Our Vision</h3>
+                            <p class="text-gray-600">To become the new global standard for body-temperature-regulating apparel and a leader in wearable tech.</p>
                         </div>
                     </div>
                 </div>
@@ -311,66 +344,34 @@
         </section>
         
         <section id="jackets-page" class="page hidden">
-    <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Jackets</h2>
-    <div class="bg-white rounded-xl shadow-lg p-8">
-        <p class="text-lg text-gray-700">This page will showcase the 10 different types of jackets you mentioned (e.g., Lite, Pro, Stealth, etc.).</p>
-        <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
-        </div>
-</section>
-
-<section id="vests-page" class="page hidden">
-    <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Vests</h2>
-    <div class="bg-white rounded-xl shadow-lg p-8">
-        <p class="text-lg text-gray-700">This page will showcase the various vests available.</p>
-        <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
-    </div>
-</section>
-
-<section id="pants-page" class="page hidden">
-    <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Pants</h2>
-    <div class="bg-white rounded-xl shadow-lg p-8">
-        <p class="text-lg text-gray-700">This page will showcase the various pants available.</p>
-        <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
-    </div>
-</section>
-
-<section id="hoodies-page" class="page hidden">
-    <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Hoodies</h2>
-    <div class="bg-white rounded-xl shadow-lg p-8">
-        <p class="text-lg text-gray-700">This page will showcase the various hoodies available.</p>
-        <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
-    </div>
-</section>
-
-        <section id="about" class="page hidden">
-            <h2 class="text-4xl font-bold text-center mb-12">About Temp</h2>
+            <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Jackets</h2>
             <div class="bg-white rounded-xl shadow-lg p-8">
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">Our Mission</h3>
-                <p class="text-lg text-gray-700 mb-4">
-                    Here at Temp, our mission is to revolutionize personal comfort through intelligent apparel. We design automated heated and cooled jackets that adapt to your environment—em­pow­er­ing people to move freely, live boldly, and feel perfectly comfortable no matter the weather. By blending cutting-edge technology with sleek design, we aim to redefine what it means to dress for the elements—mak­ing climate control wearable, effortless, and sustainable.
-                </p>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">Our Vision</h3>
-                <p class="text-lg text-gray-700 mb-4">
-                    Temp is going to help people with all sorts of body temperatures and become the new popular clothing line.
-                </p>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">Our Short-Term Goals</h3>
-                <ul class="list-disc list-inside text-lg text-gray-700 mb-4 pl-4 space-y-2">
-                    <li>Launch our flagship product line of heated and cooled jackets and vests.</li>
-                    <li>Build brand awareness through digital marketing.</li>
-                    <li>Establish a strong, loyal customer base.</li>
-                </ul>
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">Our Long-Term Goals</h3>
-                <ul class="list-disc list-inside text-lg text-gray-700 pl-4 space-y-2">
-                    <li>Expand our product range to include other forms of intelligent apparel.</li>
-                    <li>Become a globally recognized leader in wearable climate control technology.</li>
-                </ul>
-		
-		<br>
+                <p class="text-lg text-gray-700">This page will showcase the 10 different types of jackets you mentioned (e.g., Lite, Pro, Stealth, etc.).</p>
+                <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+            </div>
+        </section>
 
-		<h3 class="text-2xl font-bold text-gray-900 mb-2">Our Story</h3>
-                <p class="text-lg text-gray-700 mb-4">
-                    Our inspiration to make this idea a reality is the tumultuous weather of where we reside, Medina, Ohio. We often experience very "unpredictable" weather, as we like to describe it. One moment, it may be extremely cold, and then later on the day... scorching hot! It's unbearable. We have had enough of this weather, so we thought... why not make a solution? That is when we decided on making Temp. Formerly, we were known as SMART Clothing, but we decided to turn the company name into a more concise one. With us now being Temp, we are looking to be visionaries, innovating products that give our modern society a new perspective on apparel.  
-                </p>
+        <section id="vests-page" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Vests</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <p class="text-lg text-gray-700">This page will showcase the various vests available.</p>
+                <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+            </div>
+        </section>
+
+        <section id="pants-page" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Pants</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <p class="text-lg text-gray-700">This page will showcase the various pants available.</p>
+                <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+            </div>
+        </section>
+
+        <section id="hoodies-page" class="page hidden">
+            <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Hoodies</h2>
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <p class="text-lg text-gray-700">This page will showcase the various hoodies available.</p>
+                <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
             </div>
         </section>
 
@@ -971,7 +972,15 @@
             }
 
             function handleHashChange() {
-                const pageId = window.location.hash.substring(1) || 'home';
+                const hash = window.location.hash;
+
+                // If the hash is for the "Our Story" anchor, let the browser 
+                // scroll naturally and don't try to switch "pages".
+                if (hash === '#our-story-anchor') {
+                    return; 
+                }
+
+                const pageId = hash.substring(1) || 'home';
                 showPage(pageId);
             }
 
