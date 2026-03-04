@@ -216,18 +216,13 @@
         
             <div class="relative mt-20 mb-20">
                 <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Engineered for Every Condition</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center border-2 border-dashed border-gray-300">
-                        <img src="jacket_showcase.png" alt="Jacket with heating and cooling elements with sci-fi tech">
-                    </div>
-                    <div class="aspect-square bg-gray-300 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center border-2 border-dashed border-gray-400">
-                        <span class="text-gray-500 font-medium">[Vest Placeholder]</span>
-                    </div>
-                    <div class="aspect-square bg-gray-200 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center border-2 border-dashed border-gray-300">
-                        <span class="text-gray-400 font-medium">[Pants Placeholder]</span>
-                    </div>
-                    <div class="aspect-square bg-gray-300 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center border-2 border-dashed border-gray-400">
-                        <span class="text-gray-500 font-medium">[Hoodie Placeholder]</span>
+                <div class="w-full max-w-5xl mx-auto">
+                    <div class="aspect-video md:aspect-[21/9] bg-gray-200 rounded-3xl overflow-hidden shadow-2xl border-4 border-white relative group">
+                        <img src="all_products.png" alt="Temp Apparel Showcase" class="w-full h-full object-cover">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent flex items-end p-8">
+                            <p class="text-white text-lg font-medium">Precision engineering meets modern style.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -275,9 +270,9 @@
                     <button onclick="showReviews('jacket', 'Heated & Cooled Jackets')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
                         View All Reviews
                     </button>
-                    <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
+                    <a href="#jackets-page" class="block bg-[#4f46e5] text-white text-center font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
                         Explore More
-                    </button>
+                    </a>
                 </div>
                 
                 <div id="product-vest" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
@@ -296,9 +291,9 @@
                     <button onclick="showReviews('vest', 'Heated & Cooled Vests')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
                         View All Reviews
                     </button>
-                    <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
+                    <a href="#vests-page" class="block bg-[#4f46e5] text-white text-center font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
                         Explore More
-                    </button>
+                    </a>
                 </div>
 		<div id="product-pants" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
                     <img src="temp_logo.png" alt="Temporary logo in place of product image" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
@@ -316,9 +311,9 @@
                     <button onclick="showReviews('pants', 'Heated & Cooled Pants')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
                         View All Reviews
                     </button>
-                    <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
+                    <a href="#pants-page" class="block bg-[#4f46e5] text-white text-center font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
                         Explore More
-                    </button>
+                    </a>
                 </div>
 		<div id="product-hoodie" class="bg-white w-full md:w-80 rounded-2xl shadow-xl p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105 duration-300">
                     <img src="temp_logo.png" alt="Temporary logo in place of product image" class="w-40 h-40 rounded-full mb-4 object-cover shadow-md">
@@ -336,42 +331,109 @@
                     <button onclick="showReviews('hoodie', 'Heated & Cooled Hoodies')" class="text-[#64888c] hover:text-[#4f46e5] text-sm font-semibold mb-4 transition-colors">
                         View All Reviews
                     </button>
-                    <button class="bg-[#4f46e5] text-white font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
+                    <a href="#hoodies-page" class="block bg-[#4f46e5] text-white text-center font-semibold py-2 px-6 rounded-full shadow-lg hover:bg-[#4338ca] transition-colors duration-300 w-full">
                         Explore More
-                    </button>
+                    </a>
                 </div>
             </div>
         </section>
         
         <section id="jackets-page" class="page hidden">
-            <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Jackets</h2>
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <p class="text-lg text-gray-700">This page will showcase the 10 different types of jackets you mentioned (e.g., Lite, Pro, Stealth, etc.).</p>
-                <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+            <div class="max-w-6xl mx-auto px-4 py-12">
+                <a href="#products" class="text-[#4f46e5] font-semibold hover:underline mb-8 inline-block">← Back to All Products</a>
+                
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-12">
+                        <img src="jacket_showcase.png" alt="Heated & Cooled Jacket" class="w-full max-w-sm rounded-2xl shadow-lg">
+                    </div>
+        
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <span class="text-sm font-bold text-blue-600 uppercase tracking-widest">In Stock</span>
+                        <h2 class="text-4xl font-extrabold text-gray-900 mt-2 mb-4">Heated & Cooled Jacket</h2>
+                        <p class="text-3xl font-light text-gray-800 mb-6">$524.99</p>
+                        
+                        <p class="text-gray-600 leading-relaxed mb-8">
+                            Experience the pinnacle of wearable climate technology. Our flagship jacket features dual-zone thermal control, moisture-wicking fabric, and 12-hour battery life.
+                        </p>
+        
+                        <div class="mb-8">
+                            <h4 class="font-bold text-gray-800 mb-3 text-sm uppercase">Select Size</h4>
+                            <div class="flex gap-3">
+                                <button class="w-12 h-12 border-2 border-gray-200 rounded-lg hover:border-[#4f46e5] transition-all">S</button>
+                                <button class="w-12 h-12 border-2 border-[#4f46e5] rounded-lg bg-blue-50 text-[#4f46e5] font-bold">M</button>
+                                <button class="w-12 h-12 border-2 border-gray-200 rounded-lg hover:border-[#4f46e5] transition-all">L</button>
+                                <button class="w-12 h-12 border-2 border-gray-200 rounded-lg hover:border-[#4f46e5] transition-all">XL</button>
+                            </div>
+                        </div>
+        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button class="flex-1 bg-[#4f46e5] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-[#4338ca] transition-all" onclick="alert('This is a showcase! Real purchasing coming soon.')">
+                                Add to Cart
+                            </button>
+                            <button class="p-4 border-2 border-gray-100 rounded-xl hover:bg-gray-50 transition-all">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                            </button>
+                        </div>
+        
+                        <p class="mt-6 text-xs text-gray-400 italic">Free shipping and 30-day comfort guarantee included.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="vests-page" class="page hidden">
-            <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Vests</h2>
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <p class="text-lg text-gray-700">This page will showcase the various vests available.</p>
-                <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+            <div class="max-w-6xl mx-auto px-4 py-12">
+                <a href="#products" class="text-[#4f46e5] font-semibold hover:underline mb-8 inline-block">← Back to All Products</a>
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-12">
+                        <img src="vest_showcase.png" alt="Vest" class="w-full max-w-sm rounded-2xl shadow-lg">
+                    </div>
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <span class="text-sm font-bold text-orange-500 uppercase tracking-widest">Mid-Layer Tech</span>
+                        <h2 class="text-4xl font-extrabold text-gray-900 mt-2 mb-4">Heated & Cooled Vest</h2>
+                        <p class="text-3xl font-light text-gray-800 mb-6">$314.99</p>
+                        <p class="text-gray-600 leading-relaxed mb-8">Perfect for active days. A lightweight, core-focused temperature regulator that fits perfectly under your favorite coat or as a standalone piece for spring and fall.</p>
+                        <button class="w-full bg-[#4f46e5] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-[#4338ca] transition-all" onclick="alert('Showcase: This item has been added to your virtual cart!')">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="pants-page" class="page hidden">
-            <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Pants</h2>
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <p class="text-lg text-gray-700">This page will showcase the various pants available.</p>
-                <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+            <div class="max-w-6xl mx-auto px-4 py-12">
+                <a href="#products" class="text-[#4f46e5] font-semibold hover:underline mb-8 inline-block">← Back to All Products</a>
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-12">
+                        <img src="pants_showcase.png" alt="Pants" class="w-full max-w-sm rounded-2xl shadow-lg">
+                    </div>
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <span class="text-sm font-bold text-green-600 uppercase tracking-widest">New Arrival</span>
+                        <h2 class="text-4xl font-extrabold text-gray-900 mt-2 mb-4">Heated & Cooled Pants</h2>
+                        <p class="text-3xl font-light text-gray-800 mb-6">$209.99</p>
+                        <p class="text-gray-600 leading-relaxed mb-8">Total body comfort. These pants use flexible thermal fibers to keep your legs warm on the morning commute and cool during the afternoon rush.</p>
+                        <button class="w-full bg-[#4f46e5] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-[#4338ca] transition-all" onclick="alert('Showcase: This item has been added to your virtual cart!')">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="hoodies-page" class="page hidden">
-            <h2 class="text-4xl font-bold text-center mb-8">All Heated & Cooled Hoodies</h2>
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <p class="text-lg text-gray-700">This page will showcase the various hoodies available.</p>
-                <a href="#products" class="mt-4 inline-block text-[#4f46e5] font-semibold hover:underline">← Back to All Products</a>
+            <div class="max-w-6xl mx-auto px-4 py-12">
+                <a href="#products" class="text-[#4f46e5] font-semibold hover:underline mb-8 inline-block">← Back to All Products</a>
+                <div class="bg-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
+                    <div class="md:w-1/2 bg-gray-100 flex items-center justify-center p-12">
+                        <img src="hoodie_showcase.png" alt="Hoodie" class="w-full max-w-sm rounded-2xl shadow-lg">
+                    </div>
+                    <div class="md:w-1/2 p-8 md:p-12">
+                        <span class="text-sm font-bold text-purple-600 uppercase tracking-widest">Everyday Wear</span>
+                        <h2 class="text-4xl font-extrabold text-gray-900 mt-2 mb-4">Heated & Cooled Hoodie</h2>
+                        <p class="text-3xl font-light text-gray-800 mb-6">$314.99</p>
+                        <p class="text-gray-600 leading-relaxed mb-8">The ultimate lounge-to-street tech. Our most breathable fabric combined with subtle temperature sensors to maintain 72°F all day long.</p>
+                        <button class="w-full bg-[#4f46e5] text-white font-bold py-4 rounded-xl shadow-lg hover:bg-[#4338ca] transition-all" onclick="alert('Showcase: This item has been added to your virtual cart!')">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </section>
 
